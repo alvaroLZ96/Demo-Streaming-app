@@ -1,0 +1,22 @@
+
+body{
+    background-color: grey;
+    height: 70vh;
+}
+nav{
+    height: 15vh;
+    background-color: blue;
+}
+footer{
+    height: 20vh;
+    background-color: rgb(58, 58, 58);
+    display: flex;
+    color:white
+}
+footer li{
+    list-style-type: none;
+    
+}
+footer img{
+    height: 30px;
+}

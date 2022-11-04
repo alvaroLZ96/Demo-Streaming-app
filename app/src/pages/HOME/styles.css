@@ -1,0 +1,31 @@
+.homeDiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+.homeDiv ul{
+    list-style-type: none;
+    display: flex;
+    gap: 1rem
+    
+}
+.cardHome1{
+height: 200px;
+width: 130px;
+background-color: rgb(58, 58, 58);
+background-image: url(../src/assets/placeholder.png);
+background-repeat: no-repeat;
+background-position: center;
+}
+.cardHome2{
+    height: 200px;
+    width: 130px;
+    background-color: rgb(58, 58, 58);
+    background-image: url(../src/assets/placeholder.png);
+    background-repeat: no-repeat;
+    background-position: center;
+   
+
+    }
+    
+
+
