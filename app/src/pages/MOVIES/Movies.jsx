@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getMovie } from "../../services/API";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { filterandsort } from "../../utils/filterandsort";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
@@ -11,8 +12,9 @@ const Movies = () => {
     (async () => {
       const data = await fetch(`http://localhost:8080/entries`);
       const res = await data.json();
-      const movies = res.filter((movie) => movie.programType == "movie");
-      setMoviesList(movies);
+      const newFilter = filterandsort(res, "movie");
+      console.log(newFilter);
+      setMoviesList(newFilter);
     })();
   }, []);
 
