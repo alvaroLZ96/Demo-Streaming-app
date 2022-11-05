@@ -1,4 +1,4 @@
-/* import React from "react";
+/*import React from "react";
 import "./modal.css";
 
 const Popup = ({ open, onClose, item }) => {
