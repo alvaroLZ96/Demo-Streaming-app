@@ -4,14 +4,21 @@ import "./styles.css";
 const Home = () => {
   return (
     <div className="homeDiv">
+      <div className="popularTitles">Popular Titles</div>
       <ul>
         <li className="cardHome1">
           <div>
-            <NavLink to="series">Series</NavLink>
+            <NavLink className={"link"} to="series">
+              SERIES
+            </NavLink>
           </div>
         </li>
         <li className="cardHome2">
-          <NavLink to="movies">Movies</NavLink>
+          <div>
+            <NavLink className={"link"} to="movies">
+              MOVIES
+            </NavLink>
+          </div>
         </li>
       </ul>
     </div>

@@ -1,16 +1,28 @@
-.seriesTitle{
-margin: 0;
-background-color: aquamarine;
+.divseriestitle{
+    margin:auto;
+    height: 55px;
+    padding-left: 100px;
+    padding-top: 15px;
+    background-color: rgb(66, 66, 66);
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .divList{
-    height: 70vh;
-    margin: 2rem 4rem ;
+    height: 100%;
+    padding-left: 100px;
+    padding-right: 20px;
+    
 }
+
 .seriesList{
-display:flex;
-flex-wrap: wrap;
-gap:2rem
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0px;
 }
+
 .seriesList li{
     width:10vw ;
     height: 25vh;
@@ -24,11 +36,19 @@ gap:2rem
 }
 .seriesList img{
     height: 200px;
+    max-width:130px ;
 
 }
+.divimg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+    margin-right: 10px;
+}
 .modalButton {
-height: 30px;
-width: 100%;
+    height: 30px;
+    max-width:130px ;
     font-family: 'Satisfy', cursive;
     font-size: 12px;
     background-color: transparent;
@@ -37,5 +57,42 @@ width: 100%;
     align-self: center
 }
 .modalButton h3 {
-    margin:0;
+    text-align: initial;
 }
+/* .closePopupBtn{
+    padding:5px 10px;
+    background-color: rgb(0, 184, 113);
+    border:none;
+    outline: none;
+    margin:20px;
+}
+.popupContainer{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.473) ;
+    padding-top: 15%;
+}
+
+.popupbody{
+    width: 70%;
+    height: 80%;
+    background-color: rgb(255, 245, 202);
+    margin:auto;
+}
+.popupHeader{
+    width: 100%;
+    text-align: right;
+}
+.popupCard{
+display:flex;
+flex-direction: column;
+align-items: center;
+}
+.popupCard img{
+height: 200px;
+
+}
+ */
