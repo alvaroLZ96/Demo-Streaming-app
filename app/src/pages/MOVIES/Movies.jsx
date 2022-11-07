@@ -100,23 +100,22 @@ const Movies = () => {
       </div>
 
       <div className="divList">
-        <div className="mipollaenvinagre">
+        <div className="salsaPicante">
           <div className="moviesList">
-            {moviesList /* .slice(0, 20) */
-              .map((movie) => (
-                <div className="divimg" key={movie.title}>
-                  <img src={movie.images["Poster Art"].url} alt={movie.title} />
-                  <button
-                    className="modalButton"
-                    onClick={() => {
-                      changeContent(movie);
-                      //setOpenModal(true);
-                    }}
-                  >
-                    <h3>{movie.title}</h3>
-                  </button>
-                </div>
-              ))}
+            {moviesList.map((movie) => (
+              <div className="divimg" key={movie.title}>
+                <img src={movie.images["Poster Art"].url} alt={movie.title} />
+                <button
+                  className="modalButton"
+                  onClick={() => {
+                    changeContent(movie);
+                    //setOpenModal(true);
+                  }}
+                >
+                  <h3>{movie.title}</h3>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
         {/*   <Popup
@@ -126,7 +125,7 @@ const Movies = () => {
         ></Popup> */}
         {openModal && (
           <div className="popupContainer" onClick={changeContent}>
-            {/* se deberia cerrar pulsar cualquier parte del modal */}
+            {/* se deberia cerrar al pulsar cualquier parte del modal */}
             <div className="popupbody" onClick={(e) => e.stopPropagation()}>
               {/* si no pongo stop stopPropagation este div llama al padre */}
               <div className="popupHeader">
@@ -138,8 +137,8 @@ const Movies = () => {
                 {popupContent.map((pop) => {
                   return (
                     <div className="popupCard">
-                      <h3>Name: {pop.title}</h3>
-                      <p>Description:{pop.description}</p>
+                      <h3>{pop.title}</h3>
+                      <p>{pop.description}</p>
                       <p>Release Year:{pop.releaseYear}</p>
                       <img src={pop.images["Poster Art"].url} />
                     </div>
@@ -160,49 +159,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-/* import React from "react";
-import { useState, useEffect } from "react";
-import { getMovie } from "../../services/API";
-import { Link } from "react-router-dom";
-import "./styles.css";
-import { filterandsort } from "../../utils/filterandsort";
-
-const Movies = () => {
-  const [moviesList, setMoviesList] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await fetch(`http://localhost:8080/entries`);
-      const res = await data.json();
-      const newFilter = filterandsort(res, "movie");
-      console.log(newFilter);
-      setMoviesList(newFilter);
-    })();
-  }, []);
-
-  return (
-    <div>
-      <h1> MOVIES</h1>
-      <ul>
-        {moviesList.map((movie) => (
-          <li key={movie.title}>
-            <h3>{movie.title}</h3>
-            <Link to={`/series/${movie.title}`}>
-              <img
-                src={movie.images["Poster Art"].url}
-                alternative={movie.title}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default Movies;
-
-
-
- */

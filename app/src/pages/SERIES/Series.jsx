@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getShows } from "../../services/API";
 import "./styles.css";
-import { filterandsort } from "../../utils/filterandsort";
 /* import Popup from "../../components/Popup"; */
 
 let limit = 20;
@@ -45,10 +44,10 @@ const Series = () => {
       sortCriteria,
       order,
       releaseYear
-    ); // luego en el useeffect se trae las series y mete por parametros todos los declarados anteriormente en la api con @
+    );
 
     setNotMoreItems(series.length < limit); //  las series pintadas deben ser inferiores al limite
-    setSeriesList(series); //y una vez hecho el filtro las pinto(?)
+    setSeriesList(series); //y una vez hecho el filtro las pinto
   };
 
   const onPreviousPage = async () => {
@@ -58,13 +57,11 @@ const Series = () => {
 
     page--; //si no, una página menos
 
-    await intGetMovies(); //dudas con el await
+    await intGetMovies(); // no es necesario realmente que esta función sea asíncrona
   };
 
   const onNextPage = async () => {
-    if (notMoreItems)
-      //aquí not moreitems inlcuye a todas las series? es true?
-      return; //al no haber mas items, me quedo igual
+    if (notMoreItems) return; //al no haber mas items, me quedo igual
 
     page++; //si no, una página más
 
@@ -74,8 +71,8 @@ const Series = () => {
   const onChangeLimit = async (event) => {
     const value = event.target.value;
 
-    page = 1; //por que tiene que ser la página 1?
-    limit = value; //si meto 20 el límite tendrá que ser 20. al cambiar este límite accedo a la función de inget que cambia la condicion de setNotMoreitems o directamente el useffect?
+    page = 1; //es la primera pag porque me las pinta todas desde el principio
+    limit = value;
 
     setSeriesList([]);
     await intGetMovies();
@@ -100,21 +97,26 @@ const Series = () => {
 
       <div className="divList">
         <div className="seriesList">
-          {seriesList /* .slice(0, 20) */
-            .map((serie) => (
-              <div className="divimg" key={serie.title}>
-                <img src={serie.images["Poster Art"].url} alt={serie.title} />
-                <button
-                  className="modalButton"
-                  onClick={() => {
-                    changeContent(serie);
-                    //setOpenModal(true);
-                  }}
-                >
-                  <h3>{serie.title}</h3>
-                </button>
-              </div>
-            ))}
+          {seriesList.map((serie) => (
+            <div className="divimg" key={serie.title}>
+              <img
+                src={serie.images["Poster Art"].url}
+                alt={serie.title}
+                onError={(e) => {
+                  e.target.src = "/claqueta.png";
+                }}
+              />
+              <button
+                className="modalButton"
+                onClick={() => {
+                  changeContent(serie);
+                  //setOpenModal(true);
+                }}
+              >
+                <h3>{serie.title}</h3>
+              </button>
+            </div>
+          ))}
         </div>
 
         {/*   <Popup
@@ -134,10 +136,15 @@ const Series = () => {
                 {popupContent.map((pop) => {
                   return (
                     <div className="popupCard">
-                      <h3>Name: {pop.title}</h3>
-                      <p>Description:{pop.description}</p>
+                      <h3> {pop.title}</h3>
+                      <p>{pop.description}</p>
                       <p>Release Year:{pop.releaseYear}</p>
-                      <img src={pop.images["Poster Art"].url} />
+                      <img
+                        src={pop.images["Poster Art"].url}
+                        onError={(e) => {
+                          e.target.src = "/claqueta.png";
+                        }}
+                      />
                     </div>
                   );
                 })}

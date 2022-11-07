@@ -15,7 +15,7 @@ export const getMovie = async (param) => {
  * @param order
  * @param releaseYear
  * @returns
- */ //- se escribe "@param"para crear un parametro de búsqueda en el fecth? y debes declararlo como variables luego en la página de movies?
+ */
 export const getShows = async (
   page,
   limit,
