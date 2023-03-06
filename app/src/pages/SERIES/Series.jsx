@@ -2,13 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getShows } from "../../services/API";
 import "./styles.css";
-/* import Popup from "../../components/Popup"; */
 
 let limit = 20;
 let page = 1;
 const releaseYear = 2010;
 const sortCriteria = "title";
-const order = "asc"; // asc o desc
+const order = "asc";
 
 const Series = () => {
   const [seriesList, setSeriesList] = useState([]);
@@ -23,7 +22,6 @@ const Series = () => {
 
   useEffect(() => {
     (async () => {
-      // Obtengo las películas usando el nuevo método del servicio API
       const series = await getShows(
         page,
         limit,
@@ -37,7 +35,6 @@ const Series = () => {
   }, []);
 
   const intGetMovies = async () => {
-    // Obtengo las películas usando el nuevo método del servicio API
     const series = await getShows(
       page,
       limit,
@@ -46,24 +43,24 @@ const Series = () => {
       releaseYear
     );
 
-    setNotMoreItems(series.length < limit); //  las series pintadas deben ser inferiores al limite
-    setSeriesList(series); //y una vez hecho el filtro las pinto
+    setNotMoreItems(series.length < limit); 
+    setSeriesList(series); 
   };
 
   const onPreviousPage = async () => {
     if (page <= 1) {
-      return; //si la pag es = o menor a 1 entonces me quedo igual
+      return; 
     }
 
-    page--; //si no, una página menos
+    page--; 
 
-    await intGetMovies(); // no es necesario realmente que esta función sea asíncrona
+    await intGetMovies(); 
   };
 
   const onNextPage = async () => {
-    if (notMoreItems) return; //al no haber mas items, me quedo igual
+    if (notMoreItems) return; 
 
-    page++; //si no, una página más
+    page++;
 
     await intGetMovies();
   };
@@ -71,7 +68,7 @@ const Series = () => {
   const onChangeLimit = async (event) => {
     const value = event.target.value;
 
-    page = 1; //es la primera pag porque me las pinta todas desde el principio
+    page = 1; 
     limit = value;
 
     setSeriesList([]);
@@ -110,7 +107,7 @@ const Series = () => {
                 className="modalButton"
                 onClick={() => {
                   changeContent(serie);
-                  //setOpenModal(true);
+                  
                 }}
               >
                 <h3>{serie.title}</h3>
@@ -119,11 +116,6 @@ const Series = () => {
           ))}
         </div>
 
-        {/*   <Popup
-          open={openModal}
-          onClose={() => changeContent}
-          items={popupContent}
-        ></Popup> */}
         {openModal && (
           <div className="popupContainer" onClick={changeContent}>
             <div className="popupbody" onClick={(e) => e.stopPropagation()}>
