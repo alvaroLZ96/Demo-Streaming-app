@@ -104,7 +104,13 @@ const Movies = () => {
           <div className="moviesList">
             {moviesList.map((movie) => (
               <div className="divimg" key={movie.title}>
-                <img src={movie.images["Poster Art"].url} alt={movie.title} />
+                <img
+                  src={movie.images["Poster Art"].url}
+                  alt={movie.title}
+                  onError={(e) => {
+                    e.target.src = "/claqueta.png";
+                  }}
+                />
                 <button
                   className="modalButton"
                   onClick={() => {
