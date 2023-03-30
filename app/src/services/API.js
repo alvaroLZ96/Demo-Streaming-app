@@ -8,16 +8,6 @@ export const getMovie = async (param) => {
   return res;
 };
 
-/**
- * Get movies
- *
- * @param page
- * @param limit
- * @param sortCriteria
- * @param order
- * @param releaseYear
- * @returns
- */
 export const getShows = async (
   page,
   limit,
@@ -26,8 +16,6 @@ export const getShows = async (
   releaseYear
 ) => {
   const programType = "series";
-
-  // https://github.com/typicode/json-server
 
   const data = await fetch(
     `https://for-three-production.up.railway.app/entries?_page=${page}&_limit=${limit}&_sort=${sortCriteria}&_order=${order}&programType=${programType}&releaseYear_gte=${releaseYear}`
@@ -44,8 +32,6 @@ export const getMovies = async (
   releaseYear
 ) => {
   const programType = "movie";
-
-  // https://github.com/typicode/json-server
 
   const data = await fetch(
     `https://for-three-production.up.railway.app/entries?_page=${page}&_limit=${limit}&_sort=${sortCriteria}&_order=${order}&programType=${programType}&releaseYear_gte=${releaseYear}`

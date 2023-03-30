@@ -21,9 +21,7 @@ const Movies = () => {
   };
 
   useEffect(() => {
-    //aquí hace la primera llamada que devuelve los primeros 20 items
     (async () => {
-      // Obtengo las películas usando el nuevo método del servicio API
       const movies = await getMovies(
         page,
         limit,
@@ -31,43 +29,41 @@ const Movies = () => {
         order,
         releaseYear
       );
-      setNotMoreItems(movies.length < limit); //  las movies pintadas deben ser inferiores al limite .si me devuelve 15 el server>>es TRUE el estado
+      setNotMoreItems(movies.length < limit); 
       setMovieList(movies);
     })();
   }, []);
 
   const intGetMovies = async () => {
-    //se le llama a esta función cuando el usuario cambia de pag o cambia el número de cards que pinta
-    // Obtengo las películas usando el nuevo método del servicio API
+  
     const movies = await getMovies(
       page,
       limit,
       sortCriteria,
       order,
       releaseYear
-    ); // luego en el useeffect se trae las movies y mete por parametros todos los declarados anteriormente en la api con @
+    ); 
 
-    setNotMoreItems(movies.length < limit); //  las movies pintadas deben ser inferiores al limite
-    setMovieList(movies); //y una vez hecho el filtro las pinto(?)
+    setNotMoreItems(movies.length < limit); 
+    setMovieList(movies); 
   };
 
   const onPreviousPage = async () => {
-    //esta no necesita ser asincrona porque depende de la de getMovies que es la que hace el fecth
     if (page <= 1) {
-      return; //si la pag es = o menor a 1 entonces me quedo igual
+      return; 
     }
 
-    page--; //si no, una página menos. No me hace falta poner un else.
+    page--; 
 
-    await intGetMovies(); //dudas con el await
+    await intGetMovies();
   };
 
   const onNextPage = async () => {
     if (notMoreItems)
-      //aquí not moreitems por estado inicial está en false
-      return; //al no haber mas items, me quedo igual
+      
+      return;
 
-    page++; //si no, una página más
+    page++; 
 
     await intGetMovies();
   };
@@ -75,8 +71,8 @@ const Movies = () => {
   const onChangeLimit = async (event) => {
     const value = event.target.value;
 
-    page = 1; //vuleve a la pag 1 para devolverme los primeros items
-    limit = value; //si meto 20 el límite tendrá que ser 20. al cambiar este límite accedo a la función de inget que cambia la condicion de setNotMoreitems o directamente el useffect?
+    page = 1; 
+    limit = value;
 
     setMovieList([]);
     await intGetMovies();
@@ -115,7 +111,6 @@ const Movies = () => {
                   className="modalButton"
                   onClick={() => {
                     changeContent(movie);
-                    //setOpenModal(true);
                   }}
                 >
                   <h3>{movie.title}</h3>
@@ -124,16 +119,9 @@ const Movies = () => {
             ))}
           </div>
         </div>
-        {/*   <Popup
-          open={openModal}
-          onClose={() => changeContent}
-          items={popupContent}
-        ></Popup> */}
         {openModal && (
           <div className="popupContainer" onClick={changeContent}>
-            {/* se deberia cerrar al pulsar cualquier parte del modal */}
             <div className="popupbody" onClick={(e) => e.stopPropagation()}>
-              {/* si no pongo stop stopPropagation este div llama al padre */}
               <div className="popupHeader">
                 <button className="closePopupBtn" onClick={changeContent}>
                   X

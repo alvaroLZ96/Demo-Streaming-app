@@ -5,8 +5,6 @@ const Navbar = () => {
   return (
     <nav>
       <NavLink to={`/`} style={{ textDecoration: "none" }}>
-        {" "}
-        {/* por qué no me deja quitarle el subrayado en CSS? */}
         <div className="titleNav">DEMO Streaming</div>
       </NavLink>
       <div className="navBtns">
